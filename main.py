@@ -76,13 +76,13 @@ def start_game():
 
     while True:
         input_pattern = input("Please enter a five-digit pattern (1: Green | 0: Yellow | -1: Gray): ").split(" ")
+        input_pattern = [int(x) for x in input_pattern]
         if sum(input_pattern) == 5:
             print("Success!!!")
             sys.exit()
         
-        pattern = make_pattern([int(x) for x in input_pattern], input_guess)
-
         print("Finding best guesses..." )
+        pattern = make_pattern(input_pattern, input_guess)
         options = get_possibilities(options, pattern)
         print("Use one of the following ten guesses: ")
         best_guesses = find_best_guesses(options)
